@@ -17,7 +17,9 @@ export default function RootLayout() {
       <Stack screenOptions={{
         headerShown: false
       }}>
-        <Stack.Screen name="index" options={{ title: "Home" }} />
+        {/* <Stack.Screen name="index" options={{ title: "Home" }} /> */}
+        <Stack.Screen name="(auth)"/>
+        <Stack.Screen name="(tabs)"/>
       </Stack>
     </ClerkProvider>
   );

@@ -1,9 +1,10 @@
-import { Text, View, StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import '../../global.css';
 
 export default function Index() {
   return (
-    <View style={styles.container}>
-      <Text>Edit src/app/index.tsx to edit this screen.</Text>
+    <View className="text-xl font-bold text-blue-500">
+      <Text>Edit src/app/index.tsx to edit this screenm.</Text>
     </View>
   );
 }

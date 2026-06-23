@@ -40,7 +40,15 @@
       ],
       "expo-secure-store",
       "@clerk/expo",
-      "expo-web-browser"
+      "expo-web-browser",
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "flow-talk",
+          "organization": "dev-bm7"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

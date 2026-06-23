@@ -1,6 +1,9 @@
+import ChatWrapper from '@/components/ChatWrapper';
+import { AppProvider } from '@/contexts/AppProvider';
 import { ClerkProvider } from '@clerk/expo';
 import { tokenCache } from '@clerk/expo/token-cache';
 import { Stack } from "expo-router";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import '../../global.css';
 
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
@@ -14,13 +17,18 @@ if (!publishableKey) {
 export default function RootLayout() {
   return (
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
-      <Stack screenOptions={{
-        headerShown: false
-      }}>
-        {/* <Stack.Screen name="index" options={{ title: "Home" }} /> */}
-        <Stack.Screen name="(auth)"/>
-        <Stack.Screen name="(tabs)"/>
-      </Stack>
+      <GestureHandlerRootView className='flex-1'>
+        <ChatWrapper>
+        <AppProvider>
+          <Stack screenOptions={{
+            headerShown: false
+          }}>
+            <Stack.Screen name="(auth)" />
+            <Stack.Screen name="(tabs)" />
+          </Stack>
+        </AppProvider>
+        </ChatWrapper>
+      </GestureHandlerRootView>
     </ClerkProvider>
   );
 }

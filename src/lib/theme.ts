@@ -7,34 +7,50 @@ const vw = (percent: number) => (width * percent) / 100;
 // these colors are matching tailwind.config.js
 export const COLORS = {
   primary: "#6C5CE7",
-  primaryDark: "#5A4BD1",
-  primaryLight: "#A29BFE",
-  primaryTransparent: "rgba(108, 92, 231, 0.5)",
+  primaryDark: "#4B38D3",
+  primaryLight: "#8F85F3",
+  primaryTransparent: "rgba(108, 92, 231, 0.15)",
 
-  background: "#0F0E17",
-  surface: "#1A1A2E",
-  surfaceDark: "#0F0E17",
-  surfaceLight: "#16213E",
+  background: "#F6F7FB",
+  surface: "#FFFFFF",
+  surfaceDark: "#EBEFF5",
+  surfaceLight: "#F0F3F8",
 
-  text: "#FFFFFE",
-  textMuted: "#A7A9BE",
-  textSubtle: "#72757E",
+  text: "#1C1929",
+  textMuted: "#5C5A6A",
+  textSubtle: "#8B899A",
 
-  border: "#232946",
-  borderLight: "#2E3354",
+  border: "#E2E7EE",
+  borderLight: "#EFF2F6",
 
-  success: "#00B894",
-  warning: "#FDCB6E",
-  danger: "#FF6B6B",
+  success: "#10B981",
+  warning: "#F59E0B",
+  danger: "#EF4444",
 
   active: "#6C5CE7",
 
-  outgoingBubble: "#3D3580",
-  incomingBubble: "#1A1A2E",
-  chatBackground: "#0F0E17",
+  outgoingBubble: "#6C5CE7",
+  incomingBubble: "#EBEFF5",
+  chatBackground: "#F6F7FB",
 
   accent: "#FF6B6B",
-  accentSecondary: "#00B894",
+  accentSecondary: "#10B981",
+};
+
+export const myMessageTheme: DeepPartial<Theme> = {
+  messageItemView: {
+    content: {
+      containerInner: {
+        backgroundColor: COLORS.primary,
+        borderColor: COLORS.primary,
+      },
+      markdown: {
+        text: {
+          color: "#FFFFFF",
+        },
+      },
+    },
+  },
 };
 
 export const studyBuddyTheme: DeepPartial<Theme> = {
@@ -125,7 +141,10 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
     flatList: {
       backgroundColor: COLORS.background,
     },
-    flatListContent: {},
+    flatListContent: {
+      paddingBottom: 24,
+      paddingTop: 8,
+    },
   },
   loadingIndicator: {
     container: {
@@ -150,18 +169,50 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
   },
   channelPreview: {
     container: {
-      backgroundColor: COLORS.background,
+      backgroundColor: COLORS.surface,
+      borderRadius: 16,
+      marginHorizontal: 20,
+      marginVertical: 6,
+      padding: 16,
+      borderWidth: 1,
+      borderColor: COLORS.borderLight,
+      shadowColor: "#1C1929",
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.04,
+      shadowRadius: 6,
+      elevation: 2,
     },
     contentContainer: {
-      backgroundColor: COLORS.background,
+      backgroundColor: "transparent",
+      padding: 0,
     },
     title: {
       color: COLORS.text,
       fontSize: 16,
-      fontWeight: "600",
+      fontWeight: "700",
     },
     unreadContainer: {
       backgroundColor: COLORS.primary,
+      borderRadius: 10,
+      minWidth: 20,
+      height: 20,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    unreadText: {
+      color: "#FFFFFF",
+      fontSize: 11,
+      fontWeight: "700",
+    },
+    date: {
+      color: COLORS.textSubtle,
+      fontSize: 12,
+    },
+    message: {
+      subtitle: {
+        color: COLORS.textMuted,
+        fontSize: 13.5,
+      },
     },
   },
   messageList: {
@@ -194,21 +245,46 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
   messageComposer: {
     container: {
       backgroundColor: COLORS.surface,
-      borderTopColor: COLORS.border,
+      borderTopColor: COLORS.borderLight,
       borderTopWidth: 1,
-      paddingVertical: 8,
-      paddingHorizontal: 12,
+      paddingTop: 12,
+      paddingBottom: 24,
+      paddingHorizontal: 16,
     },
     inputBox: {
       color: COLORS.text,
-      backgroundColor: COLORS.surfaceDark,
-      borderRadius: 8,
-      paddingHorizontal: 12,
+      fontSize: 15,
+      paddingHorizontal: 14,
+      paddingVertical: 8,
     },
     inputBoxContainer: {
-      backgroundColor: COLORS.surfaceDark,
-      borderRadius: 8,
-      borderWidth: 0,
+      backgroundColor: COLORS.surfaceLight,
+      borderRadius: 24,
+      borderWidth: 1,
+      borderColor: COLORS.border,
+      marginRight: 8,
+    },
+    focusedInputBoxContainer: {
+      borderColor: COLORS.primaryLight,
+      borderWidth: 1,
+      backgroundColor: COLORS.surface,
+    },
+    attachButtonContainer: {
+      justifyContent: "center",
+      alignItems: "center",
+      width: 36,
+      height: 36,
+      borderRadius: 18,
+      backgroundColor: COLORS.surfaceLight,
+      marginRight: 8,
+    },
+    sendButtonContainer: {
+      backgroundColor: COLORS.primary,
+      borderRadius: 18,
+      width: 36,
+      height: 36,
+      justifyContent: "center",
+      alignItems: "center",
     },
     suggestionsListContainer: {
       container: {

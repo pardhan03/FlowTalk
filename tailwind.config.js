@@ -7,27 +7,27 @@ module.exports = {
     extend: {
       colors: {
         primary: "#6C5CE7",
-        "primary-dark": "#5A4BD1",
-        "primary-light": "#A29BFE",
+        "primary-dark": "#4B38D3",
+        "primary-light": "#8F85F3",
 
-        background: "#0F0E17",
-        surface: "#1A1A2E",
-        "surface-dark": "#0F0E17",
-        "surface-light": "#16213E",
+        background: "#F6F7FB",
+        surface: "#FFFFFF",
+        "surface-dark": "#EBEFF5",
+        "surface-light": "#F0F3F8",
 
-        foreground: "#FFFFFE",
-        "foreground-muted": "#A7A9BE",
-        "foreground-subtle": "#72757E",
+        foreground: "#1C1929",
+        "foreground-muted": "#5C5A6A",
+        "foreground-subtle": "#8B899A",
 
         accent: "#FF6B6B",
-        "accent-secondary": "#00B894",
+        "accent-secondary": "#10B981",
 
-        success: "#00B894",
-        warning: "#FDCB6E",
-        danger: "#FF6B6B",
+        success: "#10B981",
+        warning: "#F59E0B",
+        danger: "#EF4444",
 
-        border: "#232946",
-        "border-light": "#2E3354",
+        border: "#E2E7EE",
+        "border-light": "#EFF2F6",
       },
     },
   },

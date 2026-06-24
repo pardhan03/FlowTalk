@@ -1,13 +1,13 @@
 import { EmptyState } from '@/components/EmptyState';
 import { FullScreenLoader } from '@/components/FullScreenLoader';
 import { useAppContext } from '@/contexts/AppProvider';
-import { COLORS } from '@/lib/theme';
+import { COLORS, myMessageTheme } from '@/lib/theme';
 import { Ionicons } from '@expo/vector-icons';
 import { useHeaderHeight } from '@react-navigation/elements';
 import { useNavigation, useRouter } from 'expo-router';
 import React, { useLayoutEffect } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Channel, MessageComposer, MessageList, useChatContext, WithComponents } from 'stream-chat-expo';
+import { Channel, MessageComposer, MessageList, useChatContext, WithComponents, useMessageInputContext } from 'stream-chat-expo';
 
 const ChannelScreen = () => {
 
@@ -53,7 +53,7 @@ const ChannelScreen = () => {
                             className="mr-2.5 h-8 w-8 items-center justify-center rounded-full"
                             style={{ backgroundColor: COLORS.primary }}
                         >
-                            <Text className="text-base font-semibold text-foreground">
+                            <Text className="text-base font-semibold text-white">
                                 {displayName.charAt(0).toUpperCase()}
                             </Text>
                         </View>
@@ -79,7 +79,7 @@ const ChannelScreen = () => {
     if (!channel) return <FullScreenLoader message="Loading study room..." />;
 
     return (
-        <View className="flex-1 bg-border">
+        <View style={{ flex: 1, backgroundColor: '#F6F7FB' }}>
             <WithComponents overrides={{
                 EmptyStateIndicator: () => (
                     <EmptyState
@@ -87,11 +87,55 @@ const ChannelScreen = () => {
                         title="No messages yet"
                         subtitle="Start a study conversation!"
                     />
-                )
+                ),
+                AttachButton: (props: any) => {
+                    const { handleAttachButtonPress } = useMessageInputContext();
+                    return (
+                        <TouchableOpacity
+                            onPress={handleAttachButtonPress}
+                            disabled={props.disabled}
+                            style={{
+                                width: 36,
+                                height: 36,
+                                borderRadius: 18,
+                                backgroundColor: '#F0F3F8',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                marginRight: 8,
+                            }}
+                        >
+                            <Ionicons name="add" size={22} color={COLORS.primary} />
+                        </TouchableOpacity>
+                    );
+                },
+                SendButton: (props: any) => {
+                    const { sendMessage } = useMessageInputContext();
+                    return (
+                        <TouchableOpacity
+                            onPress={sendMessage}
+                            disabled={props.disabled}
+                            style={{
+                                width: 36,
+                                height: 36,
+                                borderRadius: 18,
+                                backgroundColor: props.disabled ? '#EFF2F6' : COLORS.primary,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Ionicons 
+                                name="send" 
+                                size={16} 
+                                color={props.disabled ? '#8B899A' : '#FFFFFF'} 
+                            />
+                        </TouchableOpacity>
+                    );
+                }
             }}>
                 <Channel
                     channel={channel}
                     keyboardVerticalOffset={headerHeight}
+                    myMessageTheme={myMessageTheme}
                 >
                     <MessageList
                         onThreadSelect={(thread) => {
@@ -100,7 +144,7 @@ const ChannelScreen = () => {
                         }}
                     />
 
-                    <View className="pb-5 bg-surface">
+                    <View style={{ backgroundColor: '#FFFFFF', paddingBottom: 20 }}>
                         <MessageComposer audioRecordingEnabled/>
                     </View>
                 </Channel>

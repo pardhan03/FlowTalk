@@ -64,10 +64,10 @@ const CallScreen = () => {
 
     if (!call) {
         return (
-            <SafeAreaView className="flex-1 bg-slate-950">
+            <SafeAreaView className="flex-1 bg-background">
                 <View className="flex-1 items-center justify-center gap-4">
                     <ActivityIndicator size="large" color={COLORS.primary} />
-                    <Text className="mt-4 text-base font-medium text-slate-300">Initiating video call...</Text>
+                    <Text className="mt-2 text-base text-foreground-muted">Starting call...</Text>
                 </View>
             </SafeAreaView>
         );
@@ -75,7 +75,7 @@ const CallScreen = () => {
 
     return (
         <StreamCall call={call}>
-            <CallUI />
+
         </StreamCall>
     )
 }
@@ -95,22 +95,14 @@ function CallUI() {
     // show ringing UI for RINGING, JOINING, and IDLE states
     if ([CallingState.RINGING, CallingState.JOINING, CallingState.IDLE].includes(callingState)) {
         return (
-            <SafeAreaView className="flex-1 bg-slate-950">
-                {isCallCreatedByMe ? (
-                    <View className="flex-1 justify-center items-center">
-                        <OutgoingCall />
-                    </View>
-                ) : (
-                    <View className="flex-1 justify-center items-center">
-                        <IncomingCall />
-                    </View>
-                )}
+            <SafeAreaView className="flex-1 bg-background">
+                {isCallCreatedByMe ? <OutgoingCall /> : <IncomingCall />}
             </SafeAreaView>
         );
     }
 
     return (
-        <SafeAreaView className="flex-1 bg-slate-950" edges={["bottom"]}>
+        <SafeAreaView className="flex-1 bg-background" edges={["bottom"]}>
             <CallContent
                 onHangupCallHandler={async () => {
                     await call?.endCall();
@@ -127,14 +119,11 @@ function ErrorCallUI({ error }: { error: string }) {
     const router = useRouter();
     return (
         <SafeAreaView className="flex-1 bg-background">
-            <View className="flex-1 items-center justify-center gap-4 px-6">
-                <View className="w-16 h-16 rounded-full bg-danger/10 items-center justify-center mb-2">
-                    <Ionicons name="alert-circle" size={32} color={COLORS.danger} />
-                </View>
-                <Text className="text-lg font-bold text-foreground">Call Connection Failed</Text>
-                <Text className="text-sm text-foreground-muted text-center max-w-xs">{error}</Text>
-                <Pressable className="mt-6 rounded-2xl bg-primary px-8 py-3.5 active:scale-95 shadow-lg shadow-primary/20" onPress={() => router.back()}>
-                    <Text className="text-[15px] font-bold text-white">Go Back</Text>
+            <View className="flex-1 items-center justify-center gap-4">
+                <Ionicons name="alert-circle-outline" size={48} color={COLORS.danger} />
+                <Text className="mt-2 text-base text-foreground">{error}</Text>
+                <Pressable className="mt-4 rounded-xl bg-primary px-6 py-3" onPress={() => router.back()}>
+                    <Text className="text-[15px] font-semibold text-foreground">Go Back</Text>
                 </Pressable>
             </View>
         </SafeAreaView>

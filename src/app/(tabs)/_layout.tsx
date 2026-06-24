@@ -1,15 +1,15 @@
 import { useAuth } from '@clerk/expo';
-import { Redirect, Tabs } from 'expo-router';
+import { Redirect } from 'expo-router';
+import { NativeTabs } from 'expo-router/unstable-native-tabs';
 import React from 'react';
-import { StyleSheet, Platform } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { COLORS } from '@/lib/theme';
+import { StyleSheet } from 'react-native';
 
 const TabsLayout = () => {
-    const { isSignedIn, isLoaded } = useAuth();
+
+    const { isSignedIn, isLoaded } = useAuth()
 
     if (!isLoaded) {
-        return null;
+        return null
     }
 
     if (!isSignedIn) {
@@ -17,74 +17,25 @@ const TabsLayout = () => {
     }
 
     return (
-        <Tabs
-            screenOptions={{
-                headerShown: false,
-                tabBarActiveTintColor: COLORS.primary,
-                tabBarInactiveTintColor: COLORS.textSubtle,
-                tabBarStyle: {
-                    backgroundColor: COLORS.surface,
-                    borderTopWidth: 1,
-                    borderTopColor: COLORS.borderLight,
-                    height: Platform.OS === 'ios' ? 88 : 64,
-                    paddingTop: 8,
-                    paddingBottom: Platform.OS === 'ios' ? 28 : 12,
-                    shadowColor: "#0F172A",
-                    shadowOffset: { width: 0, height: -4 },
-                    shadowOpacity: 0.04,
-                    shadowRadius: 12,
-                    elevation: 8,
-                },
-                tabBarLabelStyle: {
-                    fontSize: 12,
-                    fontWeight: '600',
-                    marginTop: 2,
-                },
-            }}
-        >
-            <Tabs.Screen
-                name="index"
-                options={{
-                    title: "Chats",
-                    tabBarIcon: ({ color, focused }) => (
-                        <Ionicons 
-                            name={focused ? "chatbubbles" : "chatbubbles-outline"} 
-                            size={22} 
-                            color={color} 
-                        />
-                    ),
-                }}
-            />
-            <Tabs.Screen
-                name="explore"
-                options={{
-                    title: "Explore",
-                    tabBarIcon: ({ color, focused }) => (
-                        <Ionicons 
-                            name={focused ? "compass" : "compass-outline"} 
-                            size={22} 
-                            color={color} 
-                        />
-                    ),
-                }}
-            />
-            <Tabs.Screen
-                name="profile"
-                options={{
-                    title: "Profile",
-                    tabBarIcon: ({ color, focused }) => (
-                        <Ionicons 
-                            name={focused ? "person" : "person-outline"} 
-                            size={22} 
-                            color={color} 
-                        />
-                    ),
-                }}
-            />
-        </Tabs>
-    );
-};
+        <NativeTabs>
+            <NativeTabs.Trigger name="index">
+                <NativeTabs.Trigger.Label>Chats</NativeTabs.Trigger.Label>
+                <NativeTabs.Trigger.Icon sf="message" md="chat" selectedColor={"#6C5CE7"} />
+            </NativeTabs.Trigger>
 
-export default TabsLayout;
+            <NativeTabs.Trigger name="explore">
+                <NativeTabs.Trigger.Label>Explore</NativeTabs.Trigger.Label>
+                <NativeTabs.Trigger.Icon sf="safari" md="explore" selectedColor={"#6C5CE7"} />
+            </NativeTabs.Trigger>
 
-const styles = StyleSheet.create({});
+            <NativeTabs.Trigger name="profile">
+                <NativeTabs.Trigger.Label>Profile</NativeTabs.Trigger.Label>
+                <NativeTabs.Trigger.Icon sf="person.fill" md="person" selectedColor={"#6C5CE7"} />
+            </NativeTabs.Trigger>
+        </NativeTabs>
+    )
+}
+
+export default TabsLayout
+
+const styles = StyleSheet.create({})

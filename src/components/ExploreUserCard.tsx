@@ -11,60 +11,37 @@ type ExploreUserCardProps = {
 };
 
 const ExploreUserCard = ({ item, creating, onStartChat }: ExploreUserCardProps) => {
-  const isOnline = item.online ?? false;
-  const displayName = item.name || item.id;
-
   return (
     <Pressable
-      className="flex-row items-center bg-surface rounded-2xl p-4 mb-3 border border-border-light gap-4 shadow-sm shadow-slate-900/5 active:bg-surface-dark"
+      className="flex-row items-center bg-surface rounded-2xl p-3.5 mb-2.5 border border-border gap-3.5"
       onPress={() => onStartChat(item.id)}
       disabled={creating !== null}
     >
-      {/* Avatar Container */}
-      <View className="relative">
-        {item.image ? (
-          <Image
-            source={{ uri: item.image }}
-            style={{ width: 50, height: 50, borderRadius: 25 }}
-            contentFit="cover"
-          />
-        ) : (
-          <View
-            className="w-[50px] h-[50px] rounded-full items-center justify-center"
-            style={{ backgroundColor: COLORS.primaryTransparent }}
-          >
-            <Text className="text-base font-bold" style={{ color: COLORS.primary }}>
-              {displayName.charAt(0).toUpperCase()}
-            </Text>
-          </View>
-        )}
-        
-        {isOnline && (
-          <View className="w-3.5 h-3.5 rounded-full bg-accent-secondary absolute bottom-0 right-0 border-2 border-surface" />
-        )}
-      </View>
+      <Image
+        source={item.image}
+        style={{ width: 48, height: 48, borderRadius: 24 }}
+        contentFit="cover"
+      />
 
-      {/* User Info */}
+      {item.online && (
+        <View className="w-3 h-3 rounded-full bg-accent-secondary absolute left-[50px] top-[46px] border-2 border-surface" />
+      )}
+
+      {/* User info */}
       <View className="flex-1">
-        <Text className="text-base font-bold text-foreground" numberOfLines={1}>
-          {displayName}
+        <Text className="text-base font-semibold text-foreground" numberOfLines={1}>
+          {item.name || item.id}
         </Text>
-        <Text className="text-xs text-foreground-muted mt-0.5 font-medium">
-          {isOnline ? "Active now" : "Offline"}
+        <Text className="text-xs text-foreground-muted mt-0.5">
+          {item.online ? "Online" : "Offline"}
         </Text>
       </View>
 
-      {/* Action button */}
       {creating === item.id ? (
-        <View className="h-9 w-20 justify-center items-center">
-          <ActivityIndicator size="small" color={COLORS.primary} />
-        </View>
+        <ActivityIndicator size="small" color={COLORS.primary} />
       ) : (
-        <View className="flex-row items-center justify-center bg-primary/10 rounded-full px-4 py-2 border border-primary/10">
-          <Ionicons name="chatbox-ellipses" size={14} color={COLORS.primary} />
-          <Text className="text-xs font-bold text-primary ml-1.5">
-            Chat
-          </Text>
+        <View className="w-9 h-9 rounded-xl bg-primary/20 justify-center items-center">
+          <Ionicons name="chatbubble" size={16} color={COLORS.primary} />
         </View>
       )}
     </Pressable>

@@ -123,10 +123,10 @@ const ChannelScreen = () => {
                                 alignItems: 'center',
                             }}
                         >
-                            <Ionicons 
-                                name="send" 
-                                size={16} 
-                                color={props.disabled ? '#8B899A' : '#FFFFFF'} 
+                            <Ionicons
+                                name="send"
+                                size={16}
+                                color={props.disabled ? '#8B899A' : '#FFFFFF'}
                             />
                         </TouchableOpacity>
                     );

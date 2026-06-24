@@ -19,14 +19,14 @@ export default function RootLayout() {
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
       <GestureHandlerRootView className='flex-1'>
         <ChatWrapper>
-        <AppProvider>
-          <Stack screenOptions={{
-            headerShown: false
-          }}>
-            <Stack.Screen name="(auth)" />
-            <Stack.Screen name="(tabs)" />
-          </Stack>
-        </AppProvider>
+          <AppProvider>
+            <Stack screenOptions={{
+              headerShown: false
+            }}>
+              <Stack.Screen name="(auth)" />
+              <Stack.Screen name="(tabs)" />
+            </Stack>
+          </AppProvider>
         </ChatWrapper>
       </GestureHandlerRootView>
     </ClerkProvider>

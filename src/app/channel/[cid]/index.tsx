@@ -9,7 +9,7 @@ import React, { useLayoutEffect } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Channel, MessageComposer, MessageList, useChatContext, WithComponents } from 'stream-chat-expo';
 
-const ChannleScreen = () => {
+const ChannelScreen = () => {
 
     const { channel, setThread } = useAppContext();
     const { client } = useChatContext();
@@ -109,6 +109,6 @@ const ChannleScreen = () => {
     )
 }
 
-export default ChannleScreen
+export default ChannelScreen
 
 const styles = StyleSheet.create({})

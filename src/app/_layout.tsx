@@ -1,4 +1,5 @@
 import ChatWrapper from '@/components/ChatWrapper';
+import VideoProvider from '@/components/VideoProvider';
 import { AppProvider } from '@/contexts/AppProvider';
 import { ClerkProvider } from '@clerk/expo';
 import { tokenCache } from '@clerk/expo/token-cache';
@@ -19,6 +20,7 @@ export default function RootLayout() {
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
       <GestureHandlerRootView className='flex-1'>
         <ChatWrapper>
+          <VideoProvider>
           <AppProvider>
             <Stack screenOptions={{
               headerShown: false
@@ -27,6 +29,7 @@ export default function RootLayout() {
               <Stack.Screen name="(tabs)" />
             </Stack>
           </AppProvider>
+          </VideoProvider>
         </ChatWrapper>
       </GestureHandlerRootView>
     </ClerkProvider>

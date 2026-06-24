@@ -55,8 +55,6 @@ const ChatScreen = () => {
         <Ionicons name="chatbubbles" size={16} color={COLORS.primaryLight} />
         <Text className="text-[15px] font-semibold text-primary-light">Your Study Sessions</Text>
       </View>
-      {/* CHANNEL LIST */}
-
       <ChannelList
         filters={filters}
         // state:true will fetch initial full data of the channel and watch:true will keep the channel updated with the latest data

@@ -38,12 +38,15 @@ export const COLORS = {
 };
 
 export const studyBuddyTheme: DeepPartial<Theme> = {
-  colors: {
-    targetedMessageBackground: "transparent",
-    grey_dark: COLORS.text,
-    accent_blue: COLORS.primary,
-    white: COLORS.text,
-    black: COLORS.background,
+  semantics: {
+    accentPrimary: COLORS.primary,
+    backgroundCoreApp: COLORS.background,
+    backgroundCoreSurfaceDefault: COLORS.surface,
+    backgroundCoreSurfaceStrong: COLORS.surfaceDark,
+    backgroundCoreSurfaceSubtle: COLORS.surfaceLight,
+    borderCoreDefault: COLORS.border,
+    textPrimary: COLORS.text,
+    textSecondary: COLORS.textMuted,
   },
   audioAttachment: {
     container: {
@@ -118,7 +121,7 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
       },
     },
   },
-  channelListMessenger: {
+  channelListView: {
     flatList: {
       backgroundColor: COLORS.background,
     },
@@ -143,8 +146,7 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
     },
   },
   channelListSkeleton: {
-    background: { backgroundColor: COLORS.surfaceLight },
-    maskFillColor: COLORS.background,
+    container: { backgroundColor: COLORS.surfaceLight },
   },
   channelPreview: {
     container: {
@@ -164,7 +166,6 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
   },
   messageList: {
     scrollToBottomButton: {
-      chevronColor: COLORS.text,
       container: {
         backgroundColor: COLORS.surface,
         borderColor: COLORS.border,
@@ -190,7 +191,7 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
     },
   },
 
-  messageInput: {
+  messageComposer: {
     container: {
       backgroundColor: COLORS.surface,
       borderTopColor: COLORS.border,
@@ -208,9 +209,6 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
       backgroundColor: COLORS.surfaceDark,
       borderRadius: 8,
       borderWidth: 0,
-    },
-    autoCompleteInputContainer: {
-      backgroundColor: COLORS.surface,
     },
     suggestionsListContainer: {
       container: {
@@ -273,12 +271,7 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
       },
     },
   },
-  messageSimple: {
-    avatarWrapper: {
-      container: {
-        marginRight: 8,
-      },
-    },
+  messageItemView: {
     file: {
       container: {
         backgroundColor: COLORS.surfaceDark,
@@ -301,18 +294,6 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
         borderColor: COLORS.incomingBubble,
         borderRadius: 8,
       },
-      deletedMetaText: {
-        display: "none",
-      },
-      deletedContainerInner: {
-        backgroundColor: COLORS.surfaceDark,
-        borderColor: COLORS.surfaceDark,
-      },
-      deletedText: {
-        text: {
-          color: COLORS.textMuted,
-        },
-      },
       markdown: {
         em: {
           color: COLORS.textMuted,
@@ -321,14 +302,19 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
           color: COLORS.text,
         },
       },
-      metaContainer: {
-        backgroundColor: "transparent",
-      },
       metaText: {
         color: COLORS.textSubtle,
       },
     },
-
+    deleted: {
+      containerInner: {
+        backgroundColor: COLORS.surfaceDark,
+        borderColor: COLORS.surfaceDark,
+      },
+      deletedText: {
+        color: COLORS.textMuted,
+      },
+    },
     giphy: {
       container: {
         margin: 4,
@@ -340,9 +326,6 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
         width: vw(80),
         backgroundColor: COLORS.surface,
         borderColor: COLORS.border,
-      },
-      authorNameContainer: {
-        display: "none",
       },
       cover: {
         marginHorizontal: 0,
@@ -371,23 +354,14 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
         backgroundColor: COLORS.surface,
         borderRadius: 8,
       },
-      leftCurve: {
-        borderColor: COLORS.primary,
-      },
       messageRepliesText: {
         padding: 4,
         color: COLORS.primary,
-      },
-      rightCurve: {
-        borderColor: COLORS.primary,
       },
     },
     status: {
       timeIcon: {
         pathFill: COLORS.textSubtle,
-      },
-      readByCount: {
-        color: COLORS.textSubtle,
       },
       checkAllIcon: {
         pathFill: COLORS.primary,
@@ -410,14 +384,6 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
     container: {
       backgroundColor: COLORS.surfaceDark,
       borderColor: COLORS.border,
-    },
-    textContainer: {
-      backgroundColor: COLORS.surfaceDark,
-    },
-    markdownStyles: {
-      text: {
-        color: COLORS.textMuted,
-      },
     },
   },
   typingIndicator: {
@@ -454,11 +420,6 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
         progressBar: {
           backgroundColor: COLORS.border,
         },
-        progressBarEmptyFill: COLORS.border,
-        progressBarVotedFill: COLORS.primary,
-        progressBarWinnerFill: COLORS.primaryLight,
-        voteButtonActive: COLORS.primary,
-        voteButtonInactive: COLORS.textMuted,
       },
     },
   },

@@ -7,7 +7,7 @@ import { useHeaderHeight } from '@react-navigation/elements';
 import { useNavigation, useRouter } from 'expo-router';
 import React, { useLayoutEffect } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Channel, MessageInput, MessageList, useChatContext } from 'stream-chat-expo';
+import { Channel, MessageComposer, MessageList, useChatContext, WithComponents } from 'stream-chat-expo';
 
 const ChannleScreen = () => {
 
@@ -45,7 +45,7 @@ const ChannleScreen = () => {
                 <View className="flex-row items-center">
                     {avatarUrl ? (
                         <Image
-                            source={avatarUrl}
+                            source={{ uri: avatarUrl }}
                             style={{ width: 32, height: 32, borderRadius: 16, marginRight: 10 }}
                         />
                     ) : (
@@ -80,28 +80,31 @@ const ChannleScreen = () => {
 
     return (
         <View className="flex-1 bg-border">
-            <Channel
-                channel={channel}
-                keyboardVerticalOffset={headerHeight}
-                EmptyStateIndicator={() => (
+            <WithComponents overrides={{
+                EmptyStateIndicator: () => (
                     <EmptyState
                         icon="book-outline"
                         title="No messages yet"
                         subtitle="Start a study conversation!"
                     />
-                )}
-            >
-                <MessageList
-                    onThreadSelect={(thread) => {
-                        setThread(thread);
-                        router.push(`/channel/${channel.cid}/thread/${thread?.cid}`);
-                    }}
-                />
+                )
+            }}>
+                <Channel
+                    channel={channel}
+                    keyboardVerticalOffset={headerHeight}
+                >
+                    <MessageList
+                        onThreadSelect={(thread) => {
+                            setThread(thread);
+                            router.push(`/channel/${channel.cid}/thread/${thread?.cid}`);
+                        }}
+                    />
 
-                <View className="pb-5 bg-surface">
-                    <MessageInput audioRecordingEnabled />
-                </View>
-            </Channel>
+                    <View className="pb-5 bg-surface">
+                        <MessageComposer />
+                    </View>
+                </Channel>
+            </WithComponents>
         </View>
     )
 }

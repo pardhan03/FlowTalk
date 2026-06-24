@@ -1,6 +1,5 @@
 import { studyBuddyTheme } from "@/lib/theme";
 import { useUser } from "@clerk/expo";
-import type { UserResource } from "@clerk/types";
 import * as Sentry from "@sentry/react-native";
 import { useEffect, useRef } from "react";
 import { Chat, OverlayProvider, useCreateChatClient } from "stream-chat-expo";
@@ -8,7 +7,7 @@ import { FullScreenLoader } from "./FullScreenLoader";
 
 const STREAM_API_KEY = process.env.EXPO_PUBLIC_STREAM_API_KEY!;
 
-const syncUserToStream = async (user: UserResource) => {
+const syncUserToStream = async (user: any) => {
   try {
     await fetch("/api/sync-user", {
       method: "POST",
@@ -24,7 +23,7 @@ const syncUserToStream = async (user: UserResource) => {
   }
 };
 
-const ChatClient = ({ children, user }: { children: React.ReactNode; user: UserResource }) => {
+const ChatClient = ({ children, user }: { children: React.ReactNode; user: any }) => {
   const syncedRef = useRef(false);
 
   useEffect(() => {

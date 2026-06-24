@@ -7,7 +7,7 @@ import { useHeaderHeight } from '@react-navigation/elements';
 import { useNavigation, useRouter } from 'expo-router';
 import React, { useLayoutEffect } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Channel, MessageComposer, MessageList, useChatContext, WithComponents, useMessageInputContext } from 'stream-chat-expo';
+import { Channel, MessageComposer, MessageList, useChatContext, useMessageInputContext, WithComponents } from 'stream-chat-expo';
 
 const ChannelScreen = () => {
 
@@ -145,7 +145,7 @@ const ChannelScreen = () => {
                     />
 
                     <View style={{ backgroundColor: '#FFFFFF', paddingBottom: 20 }}>
-                        <MessageComposer audioRecordingEnabled/>
+                        <MessageComposer audioRecordingEnabled />
                     </View>
                 </Channel>
             </WithComponents>

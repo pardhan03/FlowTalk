@@ -57,7 +57,6 @@ const ChatScreen = () => {
       </View>
       <ChannelList
         filters={filters}
-        // state:true will fetch initial full data of the channel and watch:true will keep the channel updated with the latest data
         options={{ state: true, watch: true }}
         sort={{ last_updated: -1 }}
         channelRenderFilterFn={channelRenderFilterFn}
@@ -69,7 +68,6 @@ const ChatScreen = () => {
           contentContainerStyle: { flexGrow: 1 },
           ItemSeparatorComponent: () => null,
         }}
-      // EmptyStateIndicator={() => <Text className="flex-1 text-white">Hey start chatting</Text>}
       />
     </SafeAreaView>
   )

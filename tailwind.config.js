@@ -6,18 +6,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#6C5CE7",
-        "primary-dark": "#4B38D3",
-        "primary-light": "#8F85F3",
+        primary: "#6366F1",
+        "primary-dark": "#4F46E5",
+        "primary-light": "#818CF8",
 
-        background: "#F6F7FB",
+        background: "#F8FAFC",
         surface: "#FFFFFF",
-        "surface-dark": "#EBEFF5",
-        "surface-light": "#F0F3F8",
+        "surface-dark": "#F1F5F9",
+        "surface-light": "#F8FAFC",
 
-        foreground: "#1C1929",
-        "foreground-muted": "#5C5A6A",
-        "foreground-subtle": "#8B899A",
+        foreground: "#0F172A",
+        "foreground-muted": "#475569",
+        "foreground-subtle": "#94A3B8",
 
         accent: "#FF6B6B",
         "accent-secondary": "#10B981",
@@ -26,8 +26,8 @@ module.exports = {
         warning: "#F59E0B",
         danger: "#EF4444",
 
-        border: "#E2E7EE",
-        "border-light": "#EFF2F6",
+        border: "#E2E8F0",
+        "border-light": "#F1F5F9",
       },
     },
   },

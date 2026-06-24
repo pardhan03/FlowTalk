@@ -1,4 +1,4 @@
-import { Dimensions } from "react-native";
+import { Dimensions, Platform } from "react-native";
 import { DeepPartial, Theme } from "stream-chat-expo";
 
 const { width } = Dimensions.get("window");
@@ -6,32 +6,32 @@ const vw = (percent: number) => (width * percent) / 100;
 
 // these colors are matching tailwind.config.js
 export const COLORS = {
-  primary: "#6C5CE7",
-  primaryDark: "#4B38D3",
-  primaryLight: "#8F85F3",
-  primaryTransparent: "rgba(108, 92, 231, 0.15)",
+  primary: "#6366F1", // Indigo-500
+  primaryDark: "#4F46E5", // Indigo-600
+  primaryLight: "#818CF8", // Indigo-400
+  primaryTransparent: "rgba(99, 102, 241, 0.12)",
 
-  background: "#F6F7FB",
+  background: "#F8FAFC", // Slate-50
   surface: "#FFFFFF",
-  surfaceDark: "#EBEFF5",
-  surfaceLight: "#F0F3F8",
+  surfaceDark: "#F1F5F9", // Slate-100
+  surfaceLight: "#F8FAFC", // Slate-50
 
-  text: "#1C1929",
-  textMuted: "#5C5A6A",
-  textSubtle: "#8B899A",
+  text: "#0F172A", // Slate-900
+  textMuted: "#475569", // Slate-600
+  textSubtle: "#94A3B8", // Slate-400
 
-  border: "#E2E7EE",
-  borderLight: "#EFF2F6",
+  border: "#E2E8F0", // Slate-200
+  borderLight: "#F1F5F9", // Slate-100
 
-  success: "#10B981",
-  warning: "#F59E0B",
-  danger: "#EF4444",
+  success: "#10B981", // Emerald-500
+  warning: "#F59E0B", // Amber-500
+  danger: "#EF4444", // Red-500
 
-  active: "#6C5CE7",
+  active: "#6366F1",
 
-  outgoingBubble: "#6C5CE7",
-  incomingBubble: "#EBEFF5",
-  chatBackground: "#F6F7FB",
+  outgoingBubble: "#6366F1",
+  incomingBubble: "#F1F5F9", // Slate-100
+  chatBackground: "#F8FAFC",
 
   accent: "#FF6B6B",
   accentSecondary: "#10B981",
@@ -43,6 +43,7 @@ export const myMessageTheme: DeepPartial<Theme> = {
       containerInner: {
         backgroundColor: COLORS.primary,
         borderColor: COLORS.primary,
+        borderRadius: 16,
       },
       markdown: {
         text: {
@@ -247,15 +248,15 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
       backgroundColor: COLORS.surface,
       borderTopColor: COLORS.borderLight,
       borderTopWidth: 1,
-      paddingTop: 12,
-      paddingBottom: 24,
-      paddingHorizontal: 16,
+      paddingTop: 10,
+      paddingBottom: Platform.OS === 'ios' ? 24 : 10,
+      paddingHorizontal: 12,
     },
     inputBox: {
       color: COLORS.text,
       fontSize: 15,
-      paddingHorizontal: 14,
-      paddingVertical: 8,
+      paddingHorizontal: 12,
+      paddingVertical: 6,
     },
     inputBoxContainer: {
       backgroundColor: COLORS.surfaceLight,
@@ -293,7 +294,7 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
     },
     audioRecorder: {
       micIcon: {
-        pathFill: COLORS.primary,
+        pathFill: COLORS.textMuted,
       },
       checkContainer: {
         backgroundColor: COLORS.primary,
@@ -368,7 +369,7 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
       containerInner: {
         backgroundColor: COLORS.incomingBubble,
         borderColor: COLORS.incomingBubble,
-        borderRadius: 8,
+        borderRadius: 16,
       },
       markdown: {
         em: {

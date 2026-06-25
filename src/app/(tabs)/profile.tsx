@@ -3,7 +3,7 @@ import { useAuth, useUser } from "@clerk/expo";
 import { Ionicons } from "@expo/vector-icons";
 // import * as Sentry from "@sentry/react-native";
 import { Image } from "expo-image";
-import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
+import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const MENU_ITEMS = [
@@ -25,6 +25,8 @@ const ProfileScreen = () => {
       <View className="px-5 py-3">
         <Text className="text-2xl font-bold text-foreground">Profile</Text>
       </View>
+
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 110 }}>
 
       {/* PROFILE CARD */}
       <View className="items-center py-5">
@@ -104,6 +106,7 @@ const ProfileScreen = () => {
         <Ionicons name="log-out-outline" size={20} color={COLORS.danger} />
         <Text className="text-base font-semibold text-danger">Sign Out</Text>
       </Pressable>
+      </ScrollView>
     </SafeAreaView>
 
   )

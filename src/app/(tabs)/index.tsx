@@ -183,7 +183,7 @@ const ChatScreen = () => {
             router.push(`/channel/${channel.id}`);
           }}
           additionalFlatListProps={{
-            contentContainerStyle: { flexGrow: 1, paddingVertical: 8 },
+            contentContainerStyle: { flexGrow: 1, paddingTop: 8, paddingBottom: 100 },
             ItemSeparatorComponent: () => null,
           }}
         />

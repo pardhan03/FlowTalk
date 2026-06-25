@@ -3,10 +3,10 @@ import { FullScreenLoader } from '@/components/FullScreenLoader';
 import { useAppContext } from '@/contexts/AppProvider';
 import { COLORS, myMessageTheme } from '@/lib/theme';
 import { Ionicons } from '@expo/vector-icons';
-import { useHeaderHeight } from '@react-navigation/elements';
 import { useNavigation, useRouter } from 'expo-router';
 import React, { useLayoutEffect } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Channel, MessageComposer, MessageList, useChatContext, useMessageInputContext, WithComponents } from 'stream-chat-expo';
 
 const ChannelScreen = () => {
@@ -17,7 +17,8 @@ const ChannelScreen = () => {
     const router = useRouter();
     const navigation = useNavigation();
 
-    const headerHeight = useHeaderHeight();
+    const insets = useSafeAreaInsets();
+    const headerHeight = insets.top + 60;
 
     let displayName = "";
     let avatarUrl = "";
@@ -31,37 +32,41 @@ const ChannelScreen = () => {
 
     useLayoutEffect(() => {
         navigation.setOptions({
-            headerShown: true,
-            headerStyle: {
-                backgroundColor: COLORS.surface,
-            },
-            headerTintColor: COLORS.text,
-            headerLeft: () => (
-                <TouchableOpacity onPress={() => router.back()} className="ml-2 flex-row items-center">
-                    <Ionicons name="arrow-back" size={24} color={COLORS.text} />
-                </TouchableOpacity>
-            ),
-            headerTitle: () => (
-                <View className="flex-row items-center">
-                    {avatarUrl ? (
-                        <Image
-                            source={{ uri: avatarUrl }}
-                            style={{ width: 32, height: 32, borderRadius: 16, marginRight: 10 }}
-                        />
-                    ) : (
-                        <View
-                            className="mr-2.5 h-8 w-8 items-center justify-center rounded-full"
-                            style={{ backgroundColor: COLORS.primary }}
-                        >
-                            <Text className="text-base font-semibold text-white">
-                                {displayName.charAt(0).toUpperCase()}
-                            </Text>
-                        </View>
-                    )}
-                    <Text className="font-semibold text-foreground">{displayName}</Text>
+            headerShown: false,
+        });
+    }, [navigation]);
+
+    if (!channel) return <FullScreenLoader message="Loading study room..." />;
+
+    return (
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#F6F7FB' }} edges={['top']}>
+            {/* Custom Header */}
+            <View style={styles.header}>
+                <View style={styles.headerLeftContainer}>
+                    <TouchableOpacity onPress={() => router.back()} style={styles.backButton} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+                        <Ionicons name="arrow-back" size={24} color={COLORS.text} />
+                    </TouchableOpacity>
+
+                    <View style={styles.headerTitleContainer}>
+                        {avatarUrl ? (
+                            <Image
+                                source={{ uri: avatarUrl }}
+                                style={{ width: 36, height: 36, borderRadius: 18, marginRight: 10 }}
+                            />
+                        ) : (
+                            <View
+                                className="mr-2.5 h-9 w-9 items-center justify-center rounded-full"
+                                style={{ backgroundColor: COLORS.primary }}
+                            >
+                                <Text className="text-base font-semibold text-white">
+                                    {displayName.charAt(0).toUpperCase()}
+                                </Text>
+                            </View>
+                        )}
+                        <Text style={styles.headerTitle} numberOfLines={1}>{displayName}</Text>
+                    </View>
                 </View>
-            ),
-            headerRight: () => (
+
                 <TouchableOpacity
                     onPress={() => {
                         router.push({
@@ -69,17 +74,12 @@ const ChannelScreen = () => {
                             params: { callId: channel?.id! },
                         });
                     }}
+                    style={styles.callButton}
+                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                 >
-                    <Ionicons name="videocam-outline" size={24} color={COLORS.primary} />
+                    <Ionicons name="videocam-outline" size={22} color={COLORS.primary} />
                 </TouchableOpacity>
-            ),
-        });
-    }, [navigation, displayName, avatarUrl, channel?.cid, channel?.id, router]);
-
-    if (!channel) return <FullScreenLoader message="Loading study room..." />;
-
-    return (
-        <View style={{ flex: 1, backgroundColor: '#F6F7FB' }}>
+            </View>
             <WithComponents overrides={{
                 EmptyStateIndicator: () => (
                     <EmptyState
@@ -149,10 +149,53 @@ const ChannelScreen = () => {
                     </View>
                 </Channel>
             </WithComponents>
-        </View>
+        </SafeAreaView>
     )
 }
 
 export default ChannelScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  header: {
+    height: 60,
+    backgroundColor: '#FFFFFF',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#EFF2F6',
+    elevation: 2,
+    shadowColor: '#1C1929',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+  },
+  headerLeftContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+    marginRight: 16,
+  },
+  backButton: {
+    paddingRight: 12,
+  },
+  headerTitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
+  headerTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: COLORS.text,
+  },
+  callButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: COLORS.primaryTransparent,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+})

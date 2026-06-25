@@ -72,7 +72,7 @@ const ExporeScreen = () => {
           data={filteredUsers}
           keyExtractor={(item) => item.id}
           renderItem={renderUserItem}
-          contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 20 }}
+          contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 100 }}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={<ListEmptyComponent />}
         />

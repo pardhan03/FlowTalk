@@ -6,6 +6,7 @@ import { tokenCache } from '@clerk/expo/token-cache';
 import { Stack } from "expo-router";
 import { StatusBar } from 'expo-status-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import '../../global.css';
 
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
@@ -20,19 +21,21 @@ export default function RootLayout() {
   return (
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
       <GestureHandlerRootView className='flex-1'>
-        <StatusBar style="dark" />
-        <ChatWrapper>
-          <VideoProvider>
-          <AppProvider>
-            <Stack screenOptions={{
-              headerShown: false
-            }}>
-              <Stack.Screen name="(auth)" />
-              <Stack.Screen name="(tabs)" />
-            </Stack>
-          </AppProvider>
-          </VideoProvider>
-        </ChatWrapper>
+        <SafeAreaProvider>
+          <StatusBar style="dark" />
+          <ChatWrapper>
+            <VideoProvider>
+            <AppProvider>
+              <Stack screenOptions={{
+                headerShown: false
+              }}>
+                <Stack.Screen name="(auth)" />
+                <Stack.Screen name="(tabs)" />
+              </Stack>
+            </AppProvider>
+            </VideoProvider>
+          </ChatWrapper>
+        </SafeAreaProvider>
       </GestureHandlerRootView>
     </ClerkProvider>
   );

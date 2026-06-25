@@ -89,22 +89,21 @@ const ChannelScreen = () => {
                     />
                 ),
                 AttachButton: (props: any) => {
-                    const { handleAttachButtonPress } = useMessageInputContext();
+                    const { openAttachmentPicker } = useMessageInputContext();
                     return (
                         <TouchableOpacity
-                            onPress={handleAttachButtonPress}
-                            disabled={props.disabled}
+                            onPress={openAttachmentPicker}
                             style={{
                                 width: 36,
                                 height: 36,
                                 borderRadius: 18,
-                                backgroundColor: '#F0F3F8',
+                                backgroundColor: COLORS.primaryTransparent,
                                 justifyContent: 'center',
                                 alignItems: 'center',
-                                marginRight: 8,
+                                marginRight: 4,
                             }}
                         >
-                            <Ionicons name="add" size={22} color={COLORS.primary} />
+                            <Ionicons name="add" size={24} color={COLORS.primary} />
                         </TouchableOpacity>
                     );
                 },
@@ -118,15 +117,22 @@ const ChannelScreen = () => {
                                 width: 36,
                                 height: 36,
                                 borderRadius: 18,
-                                backgroundColor: props.disabled ? '#EFF2F6' : COLORS.primary,
+                                backgroundColor: props.disabled ? 'transparent' : COLORS.primary,
                                 justifyContent: 'center',
                                 alignItems: 'center',
+                                ...(!props.disabled && {
+                                    shadowColor: COLORS.primary,
+                                    shadowOffset: { width: 0, height: 2 },
+                                    shadowOpacity: 0.25,
+                                    shadowRadius: 4,
+                                    elevation: 3,
+                                }),
                             }}
                         >
                             <Ionicons
                                 name="send"
                                 size={16}
-                                color={props.disabled ? '#8B899A' : '#FFFFFF'}
+                                color={props.disabled ? COLORS.textSubtle : '#FFFFFF'}
                             />
                         </TouchableOpacity>
                     );

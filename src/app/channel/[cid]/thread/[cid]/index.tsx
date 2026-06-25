@@ -5,7 +5,7 @@ import { COLORS, myMessageTheme } from '@/lib/theme';
 import { Ionicons } from '@expo/vector-icons';
 import { useHeaderHeight } from '@react-navigation/elements';
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Channel, Thread, WithComponents, useMessageInputContext } from 'stream-chat-expo';
 
@@ -28,22 +28,22 @@ const ThreadScreen = () => {
                     />
                 ),
                 AttachButton: (props: any) => {
-                    const { handleAttachButtonPress } = useMessageInputContext();
+                    const { openAttachmentPicker } = useMessageInputContext();
                     return (
                         <TouchableOpacity
-                            onPress={handleAttachButtonPress}
+                            onPress={openAttachmentPicker}
                             disabled={props.disabled}
                             style={{
                                 width: 36,
                                 height: 36,
                                 borderRadius: 18,
-                                backgroundColor: '#F0F3F8',
+                                backgroundColor: COLORS.primaryTransparent,
                                 justifyContent: 'center',
                                 alignItems: 'center',
-                                marginRight: 8,
+                                marginRight: 4,
                             }}
                         >
-                            <Ionicons name="add" size={22} color={COLORS.primary} />
+                            <Ionicons name="add" size={24} color={COLORS.primary} />
                         </TouchableOpacity>
                     );
                 },
@@ -57,15 +57,22 @@ const ThreadScreen = () => {
                                 width: 36,
                                 height: 36,
                                 borderRadius: 18,
-                                backgroundColor: props.disabled ? '#EFF2F6' : COLORS.primary,
+                                backgroundColor: props.disabled ? 'transparent' : COLORS.primary,
                                 justifyContent: 'center',
                                 alignItems: 'center',
+                                ...(!props.disabled && {
+                                    shadowColor: COLORS.primary,
+                                    shadowOffset: { width: 0, height: 2 },
+                                    shadowOpacity: 0.25,
+                                    shadowRadius: 4,
+                                    elevation: 3,
+                                }),
                             }}
                         >
-                            <Ionicons 
-                                name="send" 
-                                size={16} 
-                                color={props.disabled ? '#8B899A' : '#FFFFFF'} 
+                            <Ionicons
+                                name="send"
+                                size={16}
+                                color={props.disabled ? COLORS.textSubtle : '#FFFFFF'}
                             />
                         </TouchableOpacity>
                     );

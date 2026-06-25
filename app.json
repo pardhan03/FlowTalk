@@ -95,7 +95,8 @@
         }
       ],
       "expo-asset",
-      "expo-sharing"
+      "expo-sharing",
+      "expo-video"
     ],
     "experiments": {
       "typedRoutes": true,

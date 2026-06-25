@@ -245,29 +245,38 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
   messageComposer: {
     container: {
       backgroundColor: COLORS.surface,
-      borderTopColor: COLORS.borderLight,
-      borderTopWidth: 1,
-      paddingTop: 12,
-      paddingBottom: 24,
-      paddingHorizontal: 16,
+      borderRadius: 28,
+      borderWidth: 1,
+      borderColor: COLORS.borderLight,
+      paddingTop: 6,
+      paddingBottom: 6,
+      paddingHorizontal: 8,
+      marginHorizontal: 12,
+      marginBottom: 12,
+      marginTop: 6,
+      shadowColor: "#1C1929",
+      shadowOffset: { width: 0, height: 6 },
+      shadowOpacity: 0.08,
+      shadowRadius: 12,
+      elevation: 5,
     },
     inputBox: {
       color: COLORS.text,
-      fontSize: 15,
-      paddingHorizontal: 14,
+      fontSize: 16,
+      paddingHorizontal: 12,
       paddingVertical: 8,
+      minHeight: 38,
     },
     inputBoxContainer: {
-      backgroundColor: COLORS.surfaceLight,
+      backgroundColor: "transparent",
       borderRadius: 24,
-      borderWidth: 1,
-      borderColor: COLORS.border,
-      marginRight: 8,
+      borderWidth: 0,
+      marginRight: 4,
     },
     focusedInputBoxContainer: {
-      borderColor: COLORS.primaryLight,
-      borderWidth: 1,
-      backgroundColor: COLORS.surface,
+      borderColor: "transparent",
+      borderWidth: 0,
+      backgroundColor: "transparent",
     },
     attachButtonContainer: {
       justifyContent: "center",
@@ -275,11 +284,11 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
       width: 36,
       height: 36,
       borderRadius: 18,
-      backgroundColor: COLORS.surfaceLight,
-      marginRight: 8,
+      backgroundColor: "transparent",
+      marginRight: 4,
     },
     sendButtonContainer: {
-      backgroundColor: COLORS.primary,
+      backgroundColor: "transparent",
       borderRadius: 18,
       width: 36,
       height: 36,
@@ -289,6 +298,14 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
     suggestionsListContainer: {
       container: {
         backgroundColor: COLORS.surface,
+        borderRadius: 16,
+        borderWidth: 1,
+        borderColor: COLORS.borderLight,
+        shadowColor: "#1C1929",
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.08,
+        shadowRadius: 12,
+        elevation: 5,
       },
     },
     audioRecorder: {
@@ -302,15 +319,15 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
         backgroundColor: COLORS.danger,
       },
       deleteIcon: {
-        pathFill: COLORS.text,
+        pathFill: "#FFFFFF",
       },
       slideToCancelContainer: {
-        backgroundColor: COLORS.surface,
+        backgroundColor: "transparent",
       },
     },
     audioRecordingInProgress: {
       container: {
-        backgroundColor: COLORS.surface,
+        backgroundColor: "transparent",
       },
       durationText: {
         color: COLORS.text,
@@ -318,7 +335,7 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
     },
     audioRecordingLockIndicator: {
       container: {
-        backgroundColor: COLORS.surface,
+        backgroundColor: "transparent",
       },
       lockIcon: {
         pathFill: COLORS.primary,
@@ -329,7 +346,7 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
     },
     audioRecordingPreview: {
       container: {
-        backgroundColor: COLORS.surface,
+        backgroundColor: "transparent",
       },
       currentTime: {
         color: COLORS.text,
@@ -340,7 +357,7 @@ export const studyBuddyTheme: DeepPartial<Theme> = {
     },
     audioRecordingWaveform: {
       container: {
-        backgroundColor: COLORS.surface,
+        backgroundColor: "transparent",
       },
       waveform: {
         backgroundColor: COLORS.primary,

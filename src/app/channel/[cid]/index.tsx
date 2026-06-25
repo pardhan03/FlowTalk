@@ -18,7 +18,7 @@ const ChannelScreen = () => {
     const navigation = useNavigation();
 
     const insets = useSafeAreaInsets();
-    const headerHeight = insets.top + 60;
+    const headerHeight = insets.top;
 
     let displayName = "";
     let avatarUrl = "";
@@ -39,7 +39,7 @@ const ChannelScreen = () => {
     if (!channel) return <FullScreenLoader message="Loading study room..." />;
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#F6F7FB' }} edges={['top']}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#F6F7FB' }} edges={['top', `bottom`]}>
             {/* Custom Header */}
             <View style={styles.header}>
                 <View style={styles.headerLeftContainer}>
@@ -134,7 +134,7 @@ const ChannelScreen = () => {
             }}>
                 <Channel
                     channel={channel}
-                    keyboardVerticalOffset={headerHeight}
+                    keyboardVerticalOffset={0}
                     myMessageTheme={myMessageTheme}
                 >
                     <MessageList
@@ -143,10 +143,7 @@ const ChannelScreen = () => {
                             router.push(`/channel/${channel.cid}/thread/${thread?.cid}`);
                         }}
                     />
-
-                    <View style={{ backgroundColor: '#FFFFFF', paddingBottom: 20 }}>
-                        <MessageComposer audioRecordingEnabled />
-                    </View>
+                    <MessageComposer audioRecordingEnabled />
                 </Channel>
             </WithComponents>
         </SafeAreaView>
@@ -156,46 +153,46 @@ const ChannelScreen = () => {
 export default ChannelScreen
 
 const styles = StyleSheet.create({
-  header: {
-    height: 60,
-    backgroundColor: '#FFFFFF',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#EFF2F6',
-    elevation: 2,
-    shadowColor: '#1C1929',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 3,
-  },
-  headerLeftContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-    marginRight: 16,
-  },
-  backButton: {
-    paddingRight: 12,
-  },
-  headerTitleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-  },
-  headerTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: COLORS.text,
-  },
-  callButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: COLORS.primaryTransparent,
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
+    header: {
+        height: 60,
+        backgroundColor: '#FFFFFF',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 16,
+        borderBottomWidth: 1,
+        borderBottomColor: '#EFF2F6',
+        elevation: 2,
+        shadowColor: '#1C1929',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.05,
+        shadowRadius: 3,
+    },
+    headerLeftContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        flex: 1,
+        marginRight: 16,
+    },
+    backButton: {
+        paddingRight: 12,
+    },
+    headerTitleContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        flex: 1,
+    },
+    headerTitle: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: COLORS.text,
+    },
+    callButton: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: COLORS.primaryTransparent,
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
 })
